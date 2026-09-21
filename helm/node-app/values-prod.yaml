@@ -1,0 +1,17 @@
+replicaCount: 3
+
+image:
+  repository: local-devops-node
+  tag: v1
+  pullPolicy: IfNotPresent
+
+service:
+  type: ClusterIP
+  port: 80
+  targetPort: 3000
+
+containerPort: 3000
+
+environment:
+  name: prod
+  version: v1

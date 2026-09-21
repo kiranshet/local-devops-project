@@ -1,0 +1,28 @@
+# Node.js
+app/node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Environment files
+.env
+.env.*
+!.env.example
+
+# Logs
+*.log
+logs/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor files
+.vscode/
+.idea/
+
+# Kubernetes
+*.secret.yaml
+
+# Helm
+helm/node-app/charts/
