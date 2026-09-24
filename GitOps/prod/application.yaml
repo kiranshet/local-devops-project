@@ -7,7 +7,7 @@ spec:
   project: default
 
   source:
-    repoURL: git@github.com:kiranshet/local-devops-project.git
+    repoURL: https://github.com/kiranshet/local-devops-project.git
     targetRevision: master
     path: helm/node-app
     helm:
