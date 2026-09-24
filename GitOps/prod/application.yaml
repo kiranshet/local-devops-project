@@ -1,0 +1,24 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: node-app-prod
+  namespace: argocd
+spec:
+  project: default
+
+  source:
+    repoURL: git@github.com:kiranshet/local-devops-project.git
+    targetRevision: master
+    path: helm/node-app
+    helm:
+      valueFiles:
+        - values-prod.yaml
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: prod
+
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
