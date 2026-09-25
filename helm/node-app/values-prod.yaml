@@ -2,7 +2,7 @@ replicaCount: 3
 
 image:
   repository: ghcr.io/kiranshet/local-devops-project
-  tag: v2
+  tag: v3
   pullPolicy: IfNotPresent
 
 service:
@@ -14,4 +14,4 @@ containerPort: 3000
 
 environment:
   name: prod
-  version: v2
+  version: v3
