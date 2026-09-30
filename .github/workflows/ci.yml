@@ -9,11 +9,12 @@ on:
       - master
 
 permissions:
-  contents: read
-  packages: write      
+  contents: write
+  packages: write
 
 jobs:
   build:
+    if: github.actor != 'github-actions[bot]'
     runs-on: ubuntu-latest
 
     steps:
@@ -40,7 +41,7 @@ jobs:
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}  
+          password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build and push Docker image
         uses: docker/build-push-action@v6
@@ -49,5 +50,15 @@ jobs:
           push: true
           tags: |
             ghcr.io/${{ github.repository }}:${{ github.sha }}
-            ghcr.io/${{ github.repository }}:latest
-            ghcr.io/${{ github.repository }}:v2
+
+      - name: Update production image tag
+        if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+        run: |
+          sed -i "s/^  tag: .*/  tag: ${{ github.sha }}/" helm/node-app/values-prod.yaml
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add helm/node-app/values-prod.yaml
+          git commit -m "Update production image to ${{ github.sha }}" || exit 0
+          git push
