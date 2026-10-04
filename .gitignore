@@ -26,3 +26,12 @@ Thumbs.db
 
 # Helm
 helm/node-app/charts/
+
+# Terraform
+terraform/.terraform/
+terraform/*.tfstate
+terraform/*.tfstate.*
+terraform/crash.log
+terraform/crash.*.log
+terraform/*.tfvars
+terraform/*.tfvars.json
