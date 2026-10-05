@@ -2,7 +2,7 @@ replicaCount: 3
 
 image:
   repository: ghcr.io/kiranshet/local-devops-project
-  tag: 86b936a7853ca7a713c3cf60a62766b4a9c7ab27
+  tag: c867bbac3079663000cbfec58bb2e8bbe21b8114
   pullPolicy: IfNotPresent
 
 service:
